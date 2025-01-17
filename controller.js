@@ -1,10 +1,14 @@
+let index = 0
+
 const books = [
     {
+        id:++index,
       author: "Harper Lee",
       title: "To Kill a Mockingbird",
       year: 1960
     },
     {
+        id:++index,
       author: "George Orwell",
       title: "1984",
       year: 1949
@@ -15,6 +19,7 @@ console.log('start');
 refreshDisplay(books);
 function Book(author,title,year) {
     // the constructor...
+    this.id = ++index,
     this.author = author;
     this.title = title;
     this.year = year;
@@ -49,6 +54,15 @@ function refreshDisplay(books){
         // Create a card element
         const card = document.createElement('div');
         card.className = 'card';
+        card.setAttribute('data-id',item.id);
+        const button = document.createElement('button');
+        button.innerText = "Remove Book"
+        button.setAttribute('type','button');
+        button.setAttribute('data-id',item.id);
+
+        button.addEventListener('click',function(event){
+            removeBook(event.target.dataset.id)
+        })
       
         // Populate card content
         card.innerHTML = `
@@ -56,10 +70,32 @@ function refreshDisplay(books){
           <p>author: ${item.author}</p>
           <p>year: ${item.year}</p>
         `;
+
+        card.appendChild(button);
       
         // Append card to the container
         container.appendChild(card);
       });
+}
+
+function removeBook(id){
+    let index = books.findIndex(item=>(item.id==id));
+    books.splice(index,1);
+    removeChild(id);
+}
+
+function removeChild(id){
+    const container = document.querySelector(".container");
+    let childToRemove = '';
+    for(item of container.children){
+        if(item.dataset.id == id){
+            childToRemove = item;
+            break
+        } 
+    }
+    if(childToRemove)
+        container.removeChild(childToRemove);
+
 }
 
  
