@@ -12,7 +12,7 @@ const books = [
   ];
 
 console.log('start');
-refreshDisplay();
+refreshDisplay(books);
 function Book(author,title,year) {
     // the constructor...
     this.author = author;
@@ -29,19 +29,20 @@ function addBookToLibrary() {
     let year = document.querySelector('#year').value;
     let book = new Book(author,title,year)
     books.push(book);
-    refreshDisplay();
-    let form = document.querySelector('#bookForm');
-    form.style.display = 'none';
+    refreshDisplay([book]);
+    let overlay = document.querySelector('#overlay');
+    overlay.classList.toggle('active');
 }
 
 function openAddBookModal(){
     let form = document.querySelector('#bookForm');
     form.style.display = 'flex';
     form.classList.add('form-display');
-    let body = document.querySelector('body');
+    let overlay = document.querySelector('#overlay');
+    overlay.classList.toggle('active');
 }
 
-function refreshDisplay(){
+function refreshDisplay(books){
     const container = document.querySelector(".container");
 
     books.forEach(item => {

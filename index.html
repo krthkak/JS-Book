@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div class="overlay">
+    <div class="overlay" id = 'overlay'>
         <form id="bookForm" style="display: none;" >
             <div>
                 <label for="author">Author:</label>
@@ -26,12 +26,12 @@
             </div>
         
             <button type="button" onclick="addBookToLibrary()">Add Book</button>
-          </form>
+        </form>
     </div>
-  <button type="button" onclick="openAddBookModal()">Add New Book</button>
+  
     <div class="container">
-
     </div>
+    <button type="button" onclick="openAddBookModal()">Add New Book</button>
 
     <script src="./controller.js"></script>
 </body>
