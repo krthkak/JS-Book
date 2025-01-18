@@ -27,7 +27,7 @@ function Book(author,title,year,read) {
     this.year = year;
     this.read = read;
     this.info = function(){
-        returm `The book ${this.title} by ${this.autor} was published in the year ${this.year}`;
+        return `The book ${this.title} by ${this.autor} was published in the year ${this.year}`;
     }
 }
 
